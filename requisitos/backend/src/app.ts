@@ -1,11 +1,13 @@
 import { envs } from "./config";
-import { Server } from "./server/Server";
+import express from "express";
+import router from "./routes";
 
-(() => {
-  main();
-})();
-async function main() {
-  new Server({
-    port: envs.PORT,
-  }).start();
-}
+const port: Number = envs.PORT;
+const app = express();
+
+app.use(express.json());
+app.use("/api", router);
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
