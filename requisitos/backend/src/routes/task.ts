@@ -1,17 +1,19 @@
 import { Router } from "express";
 import {
-  createTask,
-  deleteTask,
   getTask,
+  createTask,
   updateTask,
+  deleteTask,
 } from "../controllers/task.controller";
+import { createTaskSchema, updateTaskSchema } from "../schema/task.schema";
+import { validate } from "../middlewares/validate.middleware";
 const router = Router();
 
 router.get("/", getTask);
 
-router.post("/", createTask);
+router.post("/", validate(createTaskSchema), createTask);
 
-router.put("/:id", updateTask);
+router.put("/:id", validate(updateTaskSchema), updateTask);
 
 router.delete("/:id", deleteTask);
 
