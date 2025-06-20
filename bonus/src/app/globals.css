@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+:root {
+  background-color: hsl(235, 21%, 11%);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.87);
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+}
+
+body {
+  min-height: 100vh;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -100;
+}
+
+main {
+  margin: 0 auto;
+  width: 90%;
+}
+
+section {
+  background-color: hsl(237, 14%, 26%);
+  border-radius: 5px;
+}
+
+h1 {
+  margin: 3rem 0;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.add-task {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  width: 100%;
+  & a {
+    text-decoration: none;
+  }
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid hsl(233, 14%, 35%);
+  & .options-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  & button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1rem;
+    height: 1rem;
+    & img {
+      width: 100%;
+    }
+  }
+
+  & .check-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1rem;
+    height: 1rem;
+    background: linear-gradient(to right, hsl(192 100% 67%), hsl(280 87% 65%));
+    border: 1px solid hsl(233, 14%, 35%);
+    border-radius: 50%;
+    & img {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+  }
+
+  & .uncheck-button {
+    border: 1px solid hsl(233, 14%, 35%);
+    border-radius: 50%;
+    & img {
+      opacity: 0;
+    }
+  }
+
+  & p {
+    flex-grow: 1;
+    margin-left: 1rem;
+    text-align: left;
+  }
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+  align-items: center;
+}
+.items-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+
+  & .spinner {
+    width: 48px;
+    height: 48px;
+
+    border: 5px solid #d1d5db;
+    border-top: 5px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.task-form {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  & small{
+    color: rgb(184, 142, 142);
+    font-size: 0.7rem
+  }
+  & input {
+    height: 2rem;
+    color: black;
+    padding: 0.8rem;
+  }
+  & textarea {
+    
+    height: 6rem;
+    color: black;
+    padding: 0.8rem;
+  }
+  & button {
+    padding: 0.8rem;
+    background-color: rgb(184, 87, 103);
+    border-radius: 5px;
+    border: none;
+  }
+}
+
+@media (width > 375px) {
+  main {
+    max-width: 400px;
+
+    & h1 {
+      margin: 2.5rem 0;
+      font-size: 2rem;
+      letter-spacing: 1rem;
+    }
+  }
+}
