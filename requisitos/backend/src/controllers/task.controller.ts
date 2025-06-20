@@ -68,6 +68,7 @@ export const createTask = (req: Request, res: Response, next: NextFunction) => {
 
 export const updateTask = (req: Request, res: Response, next: NextFunction) => {
   const { title, description, completed } = req.body;
+
   const { id } = req.params;
 
   let taskIndex = tasks.findIndex((t) => t.id === id);
