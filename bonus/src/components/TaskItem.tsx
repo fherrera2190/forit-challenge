@@ -1,5 +1,6 @@
-"use-client";
+"use client";
 
+import { deleteTask } from "@/actions/task/delete-task";
 import { Task } from "@/interfaces/task.interface";
 import Image from "next/image";
 
@@ -7,6 +8,10 @@ export const TaskItem = ({ task }: { task: Task }) => {
   // const { removeTask, toggleTask } = useCont11ext(TaskContext);
 
   // const navigate = useNavigate();
+  const removeTask = async () => {
+    const resp = await deleteTask(task.id);
+    console.log(resp);
+  };
 
   return (
     <li
@@ -34,7 +39,7 @@ export const TaskItem = ({ task }: { task: Task }) => {
             alt="edit"
           />
         </button>
-        <button>
+        <button onClick={() => removeTask()}>
           <Image
             width={16}
             height={16}

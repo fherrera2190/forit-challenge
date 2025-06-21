@@ -1,59 +1,43 @@
+"use client";
+
+import { createTask } from "@/actions/task/create-task";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router";
-import type { Task } from "../interfaces/task.interface";
 
 type FormValues = {
   title: string;
   description: string;
 };
-interface Props {
-  formTitle: string;
-  task?: Task;
-  action: (task: Task) => void;
-}
-export const TaskForm = ({ formTitle, task, action }: Props) => {
+
+export const TaskForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>(
-    task
-      ? {
-          defaultValues: {
-            title: task.title,
-            description: task.description,
-          },
-        }
-      : {}
-  );
+  } = useForm<FormValues>({});
 
-  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
+  const router = useRouter();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    const method = task ? "PUT" : "POST";
-    const url = task
-      ? `${import.meta.env.VITE_API_URL}/tasks/${task.id}`
-      : `${import.meta.env.VITE_API_URL}/tasks`;
-    console.log(data);
     try {
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const task = await res.json();
-      action(task);
-      navigate("/");
+      const resp = await createTask(data);
+      if (!resp.ok) {
+        setErrorMessage(resp.message);
+        return;
+      }
+      router.push("/");
     } catch {
       console.log("error");
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="task-form">
-      <h3>{formTitle}</h3>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2 p-5">
       <input
         {...register("title", { required: true, minLength: 1, maxLength: 256 })}
         placeholder="Title"
+        className="w-full p-2 border bg-light border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-5"
       />
       {errors.title && <small>Title is required</small>}
       <textarea
@@ -63,10 +47,13 @@ export const TaskForm = ({ formTitle, task, action }: Props) => {
           maxLength: 256,
         })}
         placeholder="description"
+        className="w-full p-2 h-[15ch] border bg-light mb-5 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
       />
       {errors.description && <small>Description is required</small>}
 
-      <button type="submit">Save</button>
+      <button className="p-[.8rem] bg-pink-500 rounded-md" type="submit">
+        Save
+      </button>
     </form>
   );
 };

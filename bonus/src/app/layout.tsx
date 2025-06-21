@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${josefinSans.className} relative antialiased min-h-screen flex flex-column justify-center items-center max-w-[1440px] mx-auto`}
+        className={`${josefinSans.className} relative antialiased min-h-screen flex flex-column justify-center max-w-[1440px] mx-auto`}
       >
         <header className="absolute  w-full top-0 left-0 flex align-center z-[-100] h-[200px] min-[376px]:h-[300px] bg-[url('/assets/images/bg-mobile-dark.jpg')] min-[376px]:bg-[url('/assets/images/bg-desktop-dark.jpg')] bg-no-repeat"></header>
         <main className="w-[90%] min-xs:w-full max-w-[400px]">{children}</main>
