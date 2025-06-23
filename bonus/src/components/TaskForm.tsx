@@ -40,13 +40,16 @@ export const TaskForm = ({ task }: Props) => {
       let resp;
       if (task) {
         resp = await editTask({ id: task.id, data });
+        console.log(resp)
       } else {
         resp = await createTask(data);
+        console.log(resp)
+
       }
-      if (!resp.ok) {
-        // setErrorMessage(resp.message);
-        return;
-      }
+      // if (!resp.ok) {
+      //   // setErrorMessage(resp.message);
+      //   return;
+      // }
       router.push("/");
     } catch {
       console.log("error");

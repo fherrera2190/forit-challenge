@@ -10,6 +10,7 @@ export const createTask = async ({
 }: Pick<Task, "title" | "description">) => {
   try {
     const newTask = await prisma.task.create({ data: { title, description } });
+    console.log(newTask);
     revalidatePath("/");
     return {
       ok: true,
