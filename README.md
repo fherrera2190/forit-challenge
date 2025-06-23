@@ -5,4 +5,5 @@ Este proyecto es parte del challenge de ingreso a la Academia ForIT 2025. La apl
 ## 📸 Screenshots
 
 ### Home
-![Home] (https://raw.githubusercontent.com/fherrera2190/forit-challenge/refs/heads/main/screenshots/screenshot.jpg)
+![Home](https://raw.githubusercontent.com/fherrera2190/forit-challenge/refs/heads/main/screenshots/screenshot.jpg "Home")
+
