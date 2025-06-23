@@ -18,13 +18,13 @@ export const TaskItem = ({ task }: { task: Task }) => {
   };
 
   return (
-    <li key={task.id} className="flex items-center gap-4 p-[1rem] border-b-1 ">
+    <li key={task.id} className="flex gap-4 p-[1rem] border-b-1 ">
 
       <details className="grow-1">
         <summary className="cursor-pointer">{task.title}</summary>
         <p className="mt-2 bg-violet-500 p-3 rounded-md text-xs">{task.description}</p>
       </details>
-      <div className="flex gap-3 items-center">
+      <div className="flex  gap-3 mt-2" style={{height: "100%"}}>
         <button onClick={() => toggleTask()} className={`cursor-pointer`}>
           <div
             className={

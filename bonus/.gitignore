@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/prisma/database
+**/database
 /.pnp
 .pnp.*
 .yarn/*
