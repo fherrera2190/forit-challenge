@@ -1,8 +1,10 @@
 "use client";
 
 import { createTask } from "@/actions/task/create-task";
+import { editTask } from "@/actions/task/edit-task";
+import { Task } from "@/interfaces/task.interface";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+// import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 type FormValues = {
@@ -10,21 +12,39 @@ type FormValues = {
   description: string;
 };
 
-export const TaskForm = () => {
+type Props = {
+  task?: Task;
+};
+
+export const TaskForm = ({ task }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({});
+  } = useForm<FormValues>(
+    task
+      ? {
+          defaultValues: {
+            title: task.title,
+            description: task.description,
+          },
+        }
+      : {}
+  );
 
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      const resp = await createTask(data);
+      let resp;
+      if (task) {
+        resp = await editTask({ id: task.id, data });
+      } else {
+        resp = await createTask(data);
+      }
       if (!resp.ok) {
-        setErrorMessage(resp.message);
+        // setErrorMessage(resp.message);
         return;
       }
       router.push("/");
@@ -51,7 +71,7 @@ export const TaskForm = () => {
       />
       {errors.description && <small>Description is required</small>}
 
-      <button className="p-[.8rem] bg-pink-500 rounded-md" type="submit">
+      <button className="p-[.8rem] bg-pink-500 rounded-md hover:bg-pink-400" type="submit">
         Save
       </button>
     </form>

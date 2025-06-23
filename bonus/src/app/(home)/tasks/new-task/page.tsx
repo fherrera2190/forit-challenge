@@ -13,11 +13,10 @@ export default function NewTask() {
       <div className="flex  items-center justify-between">
         <Title
           title="Create Task"
-          className="text-5xl font-bold min-xs:tracking-normal tracking-widest mt-[3rem] mb-[1.5rem] xs:my-[3.5rem] xs:text-7xl"
+          className="text-5xl font-bold min-xs:tracking-normal tracking-widest mt-[3rem] mb-[1.5rem] xs:my-[3.5rem] xs:text-6xl"
         />
-        <Link href="/" className="bg-[#25b94a] p-2 rounded-md">
-          {" "}
-          🡰 Go back
+        <Link href="/" className="bg-[#25b94a] hover:bg-[#abf0bc] p-2 rounded-md">
+          🡰 Home
         </Link>
       </div>
 
