@@ -74,7 +74,7 @@ export const TaskForm = ({ task }: Props) => {
       />
       {errors.description && <small>Description is required</small>}
 
-      <button className="p-[.8rem] bg-pink-500 rounded-md hover:bg-pink-400" type="submit">
+      <button className="p-[.8rem] bg-pink-500 rounded-md hover:bg-pink-400 cursor-pointer" type="submit">
         Save
       </button>
     </form>
