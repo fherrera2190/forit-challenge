@@ -1,5 +1,5 @@
-import { TaskItem } from "./TaskItem";
 import type { Task } from "../interfaces/task.interface";
+import { TaskItem } from "./TaskItem";
 
 interface Props {
   tasks: Task[];

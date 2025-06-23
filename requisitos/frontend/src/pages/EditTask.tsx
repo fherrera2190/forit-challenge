@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router";
 import { TaskForm } from "../components/TaskForm";
 import { useContext, useEffect } from "react";
 import { TaskContext } from "../context/TaskContext";
+import { Link } from "react-router";
 
 export const EditTask = () => {
   const { id } = useParams();
@@ -15,7 +16,16 @@ export const EditTask = () => {
 
   return (
     <>
-      <h1>Edit Task</h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h1>Edit Task</h1>
+        <Link to="/" style={{ textDecoration: "none",padding: ".5rem", backgroundColor: "green", color: "white", borderRadius: "5px" }}>←Back</Link>
+      </div>
       <section>
         <TaskForm formTitle="Edit task" task={taskToEdit} action={updateTask} />
       </section>

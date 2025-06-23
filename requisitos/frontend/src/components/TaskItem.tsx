@@ -39,15 +39,18 @@ export const TaskItem = ({ task }: { task: Task }) => {
   };
   return (
     <li key={task.id} className="task">
-      <button
-        onClick={() => handleToggle()}
-        className={`${task.completed ? "check-button" : "uncheck-button"} `}
-      >
-        <img src={check} alt="check" />
-      </button>
+      <details>
+        <summary>{task.title}</summary>
+        <p>{task.description}</p>
+      </details>
 
-      <p>{task.title}</p>
       <div className="options-buttons">
+        <button
+          onClick={() => handleToggle()}
+          className={`${task.completed ? "check-button" : "uncheck-button"} `}
+        >
+          <img src={check} alt="check" />
+        </button>
         <button onClick={() => navigate(`/edit/${task.id}`)}>
           <img src={edit} alt="edit" />
         </button>
